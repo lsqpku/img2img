@@ -4,7 +4,7 @@
 ![img2](https://github.com/lsqpku/img2img/blob/master/doc/capes.png)
 ![img3](https://github.com/lsqpku/img2img/blob/master/doc/facades.png)
 
-在这个项目中，我们使用一个简单的神经网络实现模糊图像的清晰化处理，展示一下处理效果和有趣发现，最后介绍一个GAN在图像翻译的最新应用。
+在这个项目中，我们使用一个简单的神经网络实现模糊图像的清晰化处理，展示一下处理效果和有趣发现，最后介绍一个生成对抗神经网络（GAN）在图像翻译的最新应用。
 note: 本项目中的一部分代码来自于DCGAN项目(https://github.com/Newmu/dcgan_code)。
 
 参考自编码神经网络,把GAN中discriminator和generator组合起来，形成一个图像翻译网络，网络结构如下：
@@ -36,4 +36,17 @@ note: 本项目中的一部分代码来自于DCGAN项目(https://github.com/Newm
 
 ![image_building](https://github.com/lsqpku/img2img/blob/master/doc/wiki_resize_blur.png)
 
-可以看出适用高斯模糊图像训练的模型在处理resize模糊图像有些吃力。
+可以看出使用高斯模糊图像训练的模型在处理resize模糊图像效果变差，这是可以理解的，深度学习本质上还是一种模式识别，使用高斯模糊的训练样本，模型会找到高斯模糊的模式。为了使得模型也能够处理resize模糊图像，我们可以把两种样本都作为训练样本进行训练，试验表明对两种情况的清晰化都会比较好，这就是深度神经网络的强大之处，即模型的capacity -- 通过增加测试样本和模型规模，一个模型可以处理更复杂的情况！
+
+上面的模型只是一种神经网络简单的应用，由于模型的损失函数是简单的L2-loss，因此会造成图像模糊化的效果。为了使图像变得更加真实，有人使用GAN进行图像翻译，这里介绍两个比较有名的案例：
+1. pix2pix 
+article: https://arxiv.org/pdf/1703.10593.pdf　
+repo:torch版本https://github.com/phillipi/pix2pix; tensorflow版本：https://github.com/affinelayer/pix2pix-tensorflow）　
+这篇文章的核心在于两个：一个是generator的损失函数除了判别真伪以外，加入了L1损失；判别真伪时，不是在整个图像范围内判别，而是把图片按patch进行判别，作者称之为patchGAN。经过对比测试发现，在人脸数据上这个模型的效果和上面的基础模型差别不大，但是在facades和citecapes等数据集上，效果要更真实。
+
+2. CycleGan
+article:https://arxiv.org/pdf/1703.10593.pdf
+repo:https://github.com/hardikbansal/CycleGAN
+基础模型以及pix2pix模型要求配对的训练样本，但是实际上有时很难找到大量的此类样本，CycleGan的作者提出了另一种Gan变种, 主要贡献在于只要提供两类数据集即可，不要求严格配对（比如普通马转斑马）。模型较复杂（需要用到2个判别器和两个生成器），感兴趣的可参阅https://hardikbansal.github.io/CycleGANBlog/
+
+总的来说，使用神经网络进行图像翻译，简单高效，结合Gan网络让还原后的图像更加逼真，大家可以尝试在更多领域应用图像翻译的思路，发挥深度学习的威力。
