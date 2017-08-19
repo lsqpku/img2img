@@ -32,6 +32,6 @@ note: 本项目中的一部分代码来自于DCGAN项目(https://github.com/Newm
 
 然而，高斯模糊只是模糊方法的一种，使用高斯模糊图像进行训练的模型是否适用于其他模糊方案（例如现resize原图像的1/16,再resize回原尺寸）？下图是对resize模糊方案处理过的测试样本的测试效果：
 
-(从左到右：原图像、模糊化后的图像和通过模型清晰化的图像）
+(左图为对高斯模糊图像进行清晰化后的效果，右图为对resize模糊图像进行清晰化后的效果）
 
 ![image_building](https://github.com/lsqpku/img2img/blob/master/doc/wiki_resize_blur.png)
