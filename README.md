@@ -1,13 +1,13 @@
 # img2img
-图像翻译，顾名思义，就是想语言翻译一样，从一种图像转换为另一种图像，例如把二维地图转换为三维地图，把模糊图像转换为清晰图像，把素描转化为彩图，下面是图像翻译的几个例子：
+图像翻译，顾名思义，就是像语言翻译一样，把一种图像转换为另一种图像，例如把二维地图转换为三维地图，把模糊图像转换为清晰图像，把素描转化为彩图，下面是图像翻译的几个例子：
 ![img1](https://github.com/lsqpku/img2img/blob/master/doc/blur2clear.png)
 ![img2](https://github.com/lsqpku/img2img/blob/master/doc/capes.png)
 ![img3](https://github.com/lsqpku/img2img/blob/master/doc/facades.png)
 
-在这个项目中，我们使用一个简单的神经网络实现模糊图像的清晰化处理，展示一下处理效果和有趣发现，最后介绍一个生成对抗神经网络（GAN）在图像翻译的最新应用。
+在这个项目中，我们使用一个简单的神经网络实现模糊图像的清晰化处理，展示一下处理效果和有趣发现，最后介绍一个生成对抗神经网络（GAN）在图像翻译的应用。
 note: 本项目中的一部分代码来自于DCGAN项目(https://github.com/Newmu/dcgan_code)。
 
-参考自编码神经网络,把GAN中discriminator和generator组合起来，形成一个图像翻译网络，网络结构如下：
+参考自编码神经网络,同时把GAN中discriminator和generator组合起来，就形成一个图像翻译网络，网络结构如下：
 ![network](https://github.com/lsqpku/img2img/blob/master/doc/network.jpg)
 
 我们把DCGAN中的discriminator改造为encoder,把DCGAN中的generator改造为decoder, 这一结构类似于自编码器，不同的是，在训练这个翻译网络的时候，输入和输出图像术语不同的域。例如在训练一个模糊图像清晰化的翻译网络时，输入训练样本是模糊图像，输出训练样本要尽量和对应的清晰图像接近，因此训练样本必须是每一张模糊样本有一张对应的清晰样本。前面第一副图像就是使用该神经网络对测试样本进行的清晰化处理，使用的是wiki face的彩色男性人脸，使用高斯模糊处理得到模糊图像，这样就得到一大批对偶的模糊－清晰图像训练集（超过3万张）。从清晰化处理效果看，虽然不完美，但清晰化程度大大提高。
