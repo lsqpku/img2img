@@ -15,16 +15,23 @@ note: 本项目中的一部分代码来自于DCGAN项目(https://github.com/Newm
 那么使用男性人脸训练的模型在对女性人脸进行清晰化处理的效果如何呢？下图是女性测试样本的处理效果（同样对女性样本进行高斯模糊），和男性处理效果基本一致。
 
 (从左到右：原图像、模糊化后的图像和通过模型清晰化的图像）
+
 ![image_female](https://github.com/lsqpku/img2img/blob/master/doc/wiki_female.png)
 
 开一下脑洞，对非人脸样本的处理效果如何？下图是对一些非人脸图片的测试效果（同样是先进行了高斯模糊），发现效果也是比较好的，但是色系发生了变化，从冷色调转变为人脸色调。
+
 (从左到右：原图像、模糊化后的图像和通过模型清晰化的图像）
+
 ![image_building](https://github.com/lsqpku/img2img/blob/master/doc/wiki_building.png)
 
 把上图转为灰度图像，清晰化效果看起来更明显一些：
+
 (从左到右：原图像、模糊化后的图像和通过模型清晰化的图像）
+
 ![image_building](https://github.com/lsqpku/img2img/blob/master/doc/wiki_building_gray.png)
 
 然而，高斯模糊只是模糊方法的一种，使用高斯模糊图像进行训练的模型是否适用于其他模糊方案（例如现resize原图像的1/16,再resize回原尺寸）？下图是对resize模糊方案处理过的测试样本的测试效果：
+
 (从左到右：原图像、模糊化后的图像和通过模型清晰化的图像）
+
 ![image_building](https://github.com/lsqpku/img2img/blob/master/doc/wiki_resize_blur.png)
