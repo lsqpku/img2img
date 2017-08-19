@@ -35,3 +35,5 @@ note: 本项目中的一部分代码来自于DCGAN项目(https://github.com/Newm
 (左图为对高斯模糊图像进行清晰化后的效果，右图为对resize模糊图像进行清晰化后的效果）
 
 ![image_building](https://github.com/lsqpku/img2img/blob/master/doc/wiki_resize_blur.png)
+
+可以看出适用高斯模糊图像训练的模型在处理resize模糊图像有些吃力。
