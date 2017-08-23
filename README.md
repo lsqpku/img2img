@@ -53,7 +53,7 @@ generator的网络结构代码是：
 
 示意图：
 
-![legend]https://github.com/lsqpku/img2img/blob/master/doc/LENGEND.JPG
+![legend](https://github.com/lsqpku/img2img/blob/master/doc/LENGEND.JPG)
 
 前面第一副图像就是使用该神经网络对测试样本进行的清晰化处理，使用的是wiki face的彩色男性人脸，使用高斯模糊处理得到模糊图像，这样就得到一大批对偶的模糊－清晰图像训练集（超过3万张）。从清晰化处理效果看，虽然不完美，但清晰化程度大大提高。
 
